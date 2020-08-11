@@ -1,0 +1,30 @@
+<html>
+<head>
+  <title>${i18n.getText('com.mesilat.confluence-field.pickurl.title')}</title>
+  <meta name="decorator" content="popup"/>
+  ${webResourceManager.requireResource("jira.webresources:jira-global")}
+  <script>
+  window.onbeforeunload = null;
+  </script>
+</head>
+<body>
+  #set($headingHtml = "<h2>${i18n.getText('com.mesilat.confluence-field.pickurl.title')}</h2>")
+  $soyRenderer.render('jira.webresources:soy-templates','JIRA.Templates.Headers.pageHeader',{
+    'mainContent': $headingHtml
+  })
+  <form class="aui">
+    <div class="field-group">
+      <label for="page-url">${i18n.getText('com.mesilat.confluence-field.pickurl.pageAddress')}</label>
+      <input class="text long-field" type="text" id="page-url" name="page-url">
+      <div class="description">${i18n.getText('com.mesilat.confluence-field.pickurl.description')}</div>
+      <div class="error"></div>
+    </div>
+    <div class="buttons-container">
+      <div class="buttons">
+        <button class="aui-button aui-button-primary">${i18n.getText('com.mesilat.confluence-field.dlg.save')}</button>
+        <button class="aui-button aui-button-link">${i18n.getText('com.mesilat.confluence-field.dlg.cancel')}</button>
+      </div>
+    </div>
+  </form>
+</body>
+</html>

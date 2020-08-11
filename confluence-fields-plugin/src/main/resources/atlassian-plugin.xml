@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<atlassian-plugin key="${atlassian.plugin.key}" name="${project.name}" plugins-version="2">
+  <plugin-info>
+    <description>${project.description}</description>
+    <version>${project.version}</version>
+    <vendor name="${project.organization.name}" url="${project.organization.url}"/>
+    <param name="plugin-icon">images/pluginIcon.png</param>
+    <param name="plugin-logo">images/pluginLogo.png</param>
+  </plugin-info>
+
+  <resource type="i18n" name="i18n" location="/i18n/confluence-fields"/>
+  <resource type="download" name="images/" location="/images"/>
+
+  <web-resource key="confluence-fields-css">
+    <resource type="download" name="confluence-fields.css"  location="css/confluence-fields.css"/>
+    <context>jira.general</context>
+  </web-resource>
+  <web-resource key="portal-css">
+    <resource type="download" name="portal.css"  location="css/portal.css"/>
+    <context>customerportal</context>
+  </web-resource>
+
+  <web-resource key="field-configure-resources">
+    <transformation extension="js">
+      <transformer key="jsI18n"/>
+    </transformation>
+    <transformation extension="soy">
+      <transformer key="soyTransformer"/>
+    </transformation>
+    <dependency>com.atlassian.auiplugin:ajs</dependency>
+    <dependency>com.atlassian.auiplugin:aui-flag</dependency>
+    <dependency>com.atlassian.auiplugin:aui-select2</dependency>
+    <dependency>com.atlassian.auiplugin:dialog2</dependency>
+    <dependency>jira.webresources:jquery</dependency>
+    <!-- dependency>jira.webresources:ajs-underscorejs-amd-shim</dependency -->
+    <!-- resource type="download" name="util.js" location="/js/util.js"/ -->
+    <resource type="download" name="field-configure.soy.js" location="/templates/field-configure.soy"/>
+    <!-- resource type="download" name="field-configure.js" location="/js/field-configure.js"/ -->
+    <resource type="download" name="confluence-fields.css" location="/css/confluence-fields.css"/>
+    <resource type="i18n" name="i18n" location="/i18n/confluence-fields"/>
+    <context>jira.admin</context>
+    <context>jira.admin.conf</context>
+  </web-resource>
+
+  <customfield-type key="confluence-field" name="Confluence Page Field" i18n-name-key="com.mesilat.confluence-field.name" class="com.mesilat.confield.ConfluenceField">
+    <description key="com.mesilat.confluence-field.desc">Confluence Page or Multiple Pages</description>
+    <resource name="view" type="velocity" location="/templates/confield-view-field.vm"/>
+    <resource name="edit" type="velocity" location="/templates/confield-edit-field.vm"/>
+    <resource name="xml" type="velocity" location="/templates/xml-field.vm"/>
+    <resource type="download" name="customfieldpreview.png" location="images/customfieldpreview.png"/>
+  </customfield-type>
+
+  <customfield-searcher key="confluence-field-searcher" name="Confluence Field Searcher" i18n-name-key="com.mesilat.confluence-field-searcher.name" class="com.mesilat.confield.ConfluenceFieldSearcher">
+    <resource type="velocity" name="search" location="/templates/confield-search.vm"/>
+    <resource type="velocity" name="view" location="templates/plugins/fields/view-searcher/view-searcher-select.vm"/>
+    <resource type="velocity" name="label" location="templates/plugins/fields/view-searcher/label-searcher-htmltext.vm"/>
+    <valid-customfield-type package="${project.groupId}.${project.artifactId}" key="confluence-field"/>
+  </customfield-searcher>
+
+  <rest key="rest" path="/confield" version="1.0"/>
+
+  <ao key="ao">
+    <entity>com.mesilat.confield.FieldSettings</entity>
+    <entity>com.mesilat.confield.ProjectFieldSettings</entity>
+    <entity>com.mesilat.confield.SupplementaryIndex</entity>
+  </ao>
+
+  <servlet key="field-dance-servlet" class="com.mesilat.confield.FieldDanceServlet">
+    <url-pattern>/confield/dance</url-pattern>
+  </servlet>
+
+  <servlet-filter key="value-converter-servlet-filter" class="com.mesilat.confield.ValueConverterServletFilter" location="before-dispatch" weight="0">
+    <url-pattern>/secure/AjaxIssueAction.jspa</url-pattern>
+    <url-pattern>/secure/QuickCreateIssue.jspa</url-pattern>
+    <url-pattern>/secure/QuickEditIssue.jspa</url-pattern>
+    <url-pattern>/secure/CreateIssueDetails.jspa</url-pattern>
+    <url-pattern>/secure/EditIssue.jspa</url-pattern>
+    <url-pattern>/secure/CommentAssignIssue.jspa</url-pattern>
+    <url-pattern>/secure/DetailsViewAjaxIssueAction.jspa</url-pattern>
+  </servlet-filter>
+  <servlet-filter key="value-converter-portal-filter" class="com.mesilat.confield.ValueConverterPortalFilter" location="before-dispatch" weight="100">
+    <url-pattern>/servicedesk/customer/portal/*</url-pattern>
+  </servlet-filter>
+  <servlet-filter key="value-converter-portal-rest-filter" class="com.mesilat.confield.ValueConverterPortalFilter" location="before-dispatch" weight="0">
+    <url-pattern>/rest/servicedesk/*</url-pattern>
+  </servlet-filter>
+
+  <webwork1 key="pickurl" class="java.lang.Object">
+    <actions>
+      <action name="com.mesilat.confield.UrlPickerAction" alias="PickConfluencePage">
+        <view name="success">/templates/pickurl.vm</view>
+        <view name="input">/templates/pickurl.vm</view>
+      </action>
+    </actions>
+  </webwork1>
+
+</atlassian-plugin>

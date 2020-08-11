@@ -1,0 +1,64 @@
+{namespace Mesilat.Confield.Templates}
+
+/**
+ * Configure dialog
+ * @param caption
+ */
+{template .configureDialog}
+<section id="com-mesilat-confield-configure-dialog" class="aui-dialog2  aui-dialog2-large" role="dialog" data-aui-remove-on-hide="true">
+    <header class="aui-dialog2-header">
+        <h2 class="aui-dialog2-header-main">{$caption}</h2>
+        <a class="aui-dialog2-header-close">
+            <span class="aui-icon aui-icon-small aui-iconfont-close-dialog">{getText('com.mesilat.confluence-field.dlg.close')}</span>
+        </a>
+    </header>
+
+    <div class="aui-dialog2-content">
+        <form class="aui" method="post">
+            <div class="field-group">
+                <label>{getText('com.mesilat.confluence-field.configure.dlg.confluenceLink.label')}</label>
+                <input id="ml-configure-confluenceLink" name="ml-configure-confluenceLink" type="text" class="text long-field" />
+                <div class="description">{getText('com.mesilat.confluence-field.configure.dlg.confluenceLink.desc')}</div>
+            </div>
+
+            <div class="field-group">
+                <label>{getText('com.mesilat.confluence-field.configure.dlg.filter.label')}</label>
+                <textarea id="ml-configure-filter" name="ml-configure-filter" class="textarea long-field" rows="4" >
+                </textarea>
+                <div class="description">{getText('com.mesilat.confluence-field.configure.dlg.filter.desc')}</div>
+            </div>
+
+            <div class="field-group">
+                <label>{getText('com.mesilat.confluence-field.configure.dlg.test.label')}</label>
+                <input id="ml-configure-test" name="ml-configure-test" type="text" class="text long-field" />
+                <div class="description">{getText('com.mesilat.confluence-field.configure.dlg.test.desc')}</div>
+            </div>
+
+            <div class="field-group">
+                <label>{getText('com.mesilat.confluence-field.configure.dlg.multiselect.label')}</label>
+                <input id="ml-configure-multiselect" name="ml-configure-multiselect" type="checkbox" class="checkbox" />
+                <div class="description">{getText('com.mesilat.confluence-field.configure.dlg.multiselect.desc')}</div>
+            </div>
+
+            <div class="field-group">
+                <label>{getText('com.mesilat.confluence-field.configure.dlg.autofilter.label')}</label>
+                <input id="ml-configure-autofilter" name="ml-configure-autofilter" type="checkbox" class="checkbox" />
+                <div class="description">{getText('com.mesilat.confluence-field.configure.dlg.autofilter.desc')}</div>
+            </div>
+
+            <div class="field-group">
+                <label>{getText('com.mesilat.confluence-field.configure.dlg.asdefiner.label')}</label>
+                <input id="ml-configure-asdefiner" name="ml-configure-asdefiner" type="checkbox" class="checkbox" />
+                <div class="description">{getText('com.mesilat.confluence-field.configure.dlg.asdefiner.desc')}</div>
+            </div>
+        </form>
+    </div>
+
+    <footer class="aui-dialog2-footer">
+        <div class="aui-dialog2-footer-actions">
+            <button class="aui-button aui-button-primary">{getText('com.mesilat.confluence-field.dlg.save')}</button>
+            <button class="aui-button aui-button-link cancel">{getText('com.mesilat.confluence-field.dlg.cancel')}</button>
+        </div>
+    </footer>
+</section>
+{/template}

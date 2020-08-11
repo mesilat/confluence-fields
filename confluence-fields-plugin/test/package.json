@@ -1,0 +1,21 @@
+{
+  "name": "confluence-fields-tests",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "devDependencies": {
+    "axios": "^0.19.2",
+    "@babel/core": "^7.8.4",
+    "@babel/preset-env": "^7.8.4",
+    "babel-jest": "^25.1.0",
+    "jest": "^25.1.0",
+    "jest-puppeteer": "^4.4.0",
+    "puppeteer": "^3.0.1",
+    "tree-kill": "^1.2.2"
+  },
+  "scripts": {
+    "test": "jest"
+  },
+  "dependencies": {
+  }
+}

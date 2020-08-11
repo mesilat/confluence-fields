@@ -1,0 +1,10 @@
+.ml-select2-option img {
+    transform: translate(0,2px);
+}
+
+ul.confluence-fields-values {
+    padding-left: 0;
+}
+ul.confluence-fields-values li {
+    list-style-type: none;
+}

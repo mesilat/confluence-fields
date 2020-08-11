@@ -1,0 +1,5 @@
+<ul class="confluence-fields-values">
+    #foreach($val in $templateHelper.getDetailsForValues($value))
+        <li data-value="$!val.id"><a href="$val.url" target="_blank">$!val.title</a></li>
+    #end
+</ul>

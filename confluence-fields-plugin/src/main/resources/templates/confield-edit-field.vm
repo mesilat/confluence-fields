@@ -1,0 +1,18 @@
+#controlHeader ($action $customField.id $customField.name $fieldLayoutItem.required $displayParameters.noHeader)
+<div style="width:100%;">
+    <input
+        id="$customField.id"
+        name="$customField.id"
+        type="text"
+        class="text long-field"
+
+        com-mesilat-confields="true"
+        data-com-mesilat-confields-values="$templateHelper.getFormValues($customFieldParams)"
+        data-com-mesilat-confields-filter-fields="$templateHelper.getParamsForFilter()"
+        data-com-mesilat-confields-select-multi="$templateHelper.isSelectMulti()"
+        data-com-mesilat-confields-auto-filter="$templateHelper.isAutoFilter()"
+
+        tabindex="-1">
+    </input>
+</div>
+#controlFooter ($action $fieldLayoutItem.fieldDescription $displayParameters.noHeader)
